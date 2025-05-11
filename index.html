@@ -7,48 +7,81 @@
   <meta name="Generator" content="Cocoa HTML Writer">
   <meta name="CocoaVersion" content="2113.65">
   <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Germany Power Grid Map&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt; #map { height: 100vh; margin: 0; } &lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1">&lt;div id="map"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;</p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const map = L.map('map').setView([51.2, 10.5], 6); // Centered on Germany</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>attribution: '&amp;copy; OpenStreetMap contributors'</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}).addTo(map);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>fetch('powerlines.geojson')</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.then(res =&gt; res.json())</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.then(data =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>L.geoJSON(data, {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>style: feature =&gt; ({</p>
-<p class="p1"><span class="Apple-converted-space">          </span>color: feature.properties.voltage === '380000' ? 'red' :</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>feature.properties.voltage === '220000' ? 'orange' : 'blue',</p>
-<p class="p1"><span class="Apple-converted-space">          </span>weight: 2</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>onEachFeature: (feature, layer) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>if (feature.properties.name) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>layer.bindPopup(feature.properties.name);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}).addTo(map);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Germany Power Grid Map&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;link</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>rel="stylesheet"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>integrity="sha512-sA+z0pDdJyJvD0a2hh3Z28JZC6ZLFxTQ8J+FJc3E6NKEEZRY7iyptPbVfR6VW7vCvGEFDgxgBSbYQgIkbK+8rQ=="</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>crossorigin=""</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>/&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>html, body, #map {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>height: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;div id="map"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;script</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>integrity="sha512-CJ+UZGkV3Y7AeGeDrZ3wqZRoR5X3EkXz19qDk+qDnKzH8OgPeNKKf4mjNBrZg3EvU8rgU5Rz1MQkzV7h12J4ow=="</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>crossorigin=""</span></p>
+<p class="p1"><span class="s1">&gt;&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Initialize map</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const map = L.map('map').setView([51.2, 10.5], 6); // Centered on Germany</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Add OpenStreetMap base layer</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>maxZoom: 19,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>attribution: '&amp;copy; OpenStreetMap contributors'</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}).addTo(map);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Load GeoJSON data</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>fetch('powerlines.geojson')</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.then(response =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (!response.ok) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>throw new Error("Could not load powerlines.geojson");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>return response.json();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>})</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.then(data =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>L.geoJSON(data, {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>style: feature =&gt; ({</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>color:</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>feature.properties.voltage === '380000' ? 'red' :</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>feature.properties.voltage === '220000' ? 'orange' :</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>'blue',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>weight: 2</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>onEachFeature: (feature, layer) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const name = feature.properties.name || 'Unnamed Line';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>layer.bindPopup(`&lt;strong&gt;${name}&lt;/strong&gt;`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}).addTo(map);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>})</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.catch(err =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>console.error("Error loading GeoJSON:", err);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
 </body>
 </html>
